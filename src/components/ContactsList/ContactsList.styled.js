@@ -25,7 +25,10 @@ export const Link = styled.a`
 `;
 
 export const Btn = styled.button`
-  width: 20px;
-  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
   border-radius: ${props => props.theme.radii.round};
 `;

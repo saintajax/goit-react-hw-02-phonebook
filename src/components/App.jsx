@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Box } from './Box/Box';
 import { nanoid } from 'nanoid';
 import { ContactsList } from './ContactsList/ContactsList';
-import { Button } from './ContactForm/Button/Button';
-import { number } from 'yup';
 import { InputField } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 
@@ -16,8 +14,6 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   handleInputChange = e => {
@@ -25,9 +21,9 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
-  addContact = () => {
-    const { contacts, name, number } = this.state;
-    const newContact = { id: nanoid(), name: name, number: number };
+  addContact = ({ name, number }) => {
+    const { contacts } = this.state;
+    const newContact = { id: nanoid(), name, number };
     if (!newContact.name || !newContact.number) {
       return;
     }
@@ -36,8 +32,6 @@ export class App extends Component {
       ? alert(`This contact is already in list`)
       : this.setState(prevState => ({
           contacts: [...prevState.contacts, newContact],
-          name: '',
-          number: '',
         }));
   };
 
