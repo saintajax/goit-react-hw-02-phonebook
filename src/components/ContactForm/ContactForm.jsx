@@ -7,7 +7,7 @@ const initialValues = {
   number: '',
 };
 
-export const InputField = ({ addContact }) => {
+export const ContactForm = ({ addContact }) => {
   const handleSubmit = (values, actions) => {
     addContact(values);
     actions.resetForm();
@@ -44,6 +44,6 @@ export const InputField = ({ addContact }) => {
   );
 };
 
-InputField.propTypes = {
+ContactForm.propTypes = {
   addContact: PropTypes.func.isRequired,
 };

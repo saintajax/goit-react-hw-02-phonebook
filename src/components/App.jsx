@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Box } from './Box/Box';
 import { nanoid } from 'nanoid';
 import { ContactsList } from './ContactsList/ContactsList';
-import { InputField } from './ContactForm/ContactForm';
+import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 
 export class App extends Component {
@@ -24,11 +24,10 @@ export class App extends Component {
   addContact = ({ name, number }) => {
     const { contacts } = this.state;
     const newContact = { id: nanoid(), name, number };
-    if (!newContact.name || !newContact.number) {
-      return;
-    }
-    contacts.some(contact => contact.name === newContact.name) ||
-    contacts.some(contact => contact.number === newContact.number)
+    // if (!newContact.name || !newContact.number) {
+    //   return;
+    // }
+    contacts.some(contact => contact.name === newContact.name)
       ? alert(`This contact is already in list`)
       : this.setState(prevState => ({
           contacts: [...prevState.contacts, newContact],
@@ -36,16 +35,9 @@ export class App extends Component {
   };
 
   deleteContact = id => {
-    this.setState(prevState => {
-      const newContacts = prevState.contacts.filter(
-        contact => contact.id !== id
-      );
-      return {
-        contacts: newContacts,
-        name: '',
-        number: '',
-      };
-    });
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
   };
 
   render() {
@@ -66,7 +58,7 @@ export class App extends Component {
         alignItems="center"
       >
         <h1>Phonebook</h1>
-        <InputField
+        <ContactForm
           valueName={name}
           valueNumber={number}
           handleChange={this.handleInputChange}
