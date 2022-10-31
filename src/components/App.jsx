@@ -39,7 +39,7 @@ export class App extends Component {
   };
 
   render() {
-    const { contacts, name, number, filter } = this.state;
+    const { contacts, filter } = this.state;
     const normFilter = filter.trim().toLowerCase();
     const visibleContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(normFilter)
